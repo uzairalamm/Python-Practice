@@ -1,0 +1,462 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Python Learning Roadmap</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: one column of five stages. A 26-week strip up top is scaled to the real stage lengths (4/4/4/8/6) and fills as items are ticked. Each stage has a sticky week label on the left and checklists plus a code sample on the right. */
+:root {
+  --bg: #F3F6FB;
+  --surface: #FFFFFF;
+  --surface-2: #E8EDF6;
+  --ink: #12203A;
+  --muted: #55627E;
+  --line: #D5DCEA;
+  --accent: #2457B5;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #E1EAFB;
+  --sun: #F6BE1B;
+  --sun-ink: #12203A;
+  --hl: #FFD54A;
+  --code-bg: #0F1A30;
+  --code-ink: #DCE5F7;
+  --code-line: #22304F;
+  --code-muted: #8496BA;
+  --tok-k: #FFB86B;
+  --tok-s: #8FD6A6;
+  --tok-f: #8DB8FF;
+  --tok-c: #7E8FB3;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0B1322; --surface: #131E35; --surface-2: #1B2946; --ink: #E6EBF6; --muted: #9BA8C4; --line: #263552;
+    --accent: #7BA8FF; --accent-ink: #0B1322; --accent-soft: #1A2B4D; --sun: #FFC933; --sun-ink: #12203A; --hl: #6B5300;
+    --code-bg: #08101F; --code-ink: #DCE5F7; --code-line: #1E2B48; --code-muted: #8496BA;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0B1322; --surface: #131E35; --surface-2: #1B2946; --ink: #E6EBF6; --muted: #9BA8C4; --line: #263552;
+  --accent: #7BA8FF; --accent-ink: #0B1322; --accent-soft: #1A2B4D; --sun: #FFC933; --sun-ink: #12203A; --hl: #6B5300;
+  --code-bg: #08101F; --code-ink: #DCE5F7; --code-line: #1E2B48; --code-muted: #8496BA;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 16px/1.6 var(--body);
+  padding-block: 40px 72px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+.wrap { max-width: 1040px; margin: 0 auto; }
+h1, h2, h3, p { margin: 0; }
+h1, h2 { font-family: var(--display); text-wrap: balance; letter-spacing: -0.02em; }
+a { color: inherit; }
+code {
+  font: 500 0.88em var(--mono);
+  background: var(--surface-2);
+  padding: 1px 6px;
+  border-radius: 4px;
+  overflow-wrap: anywhere;
+}
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 32px 48px; align-items: end; }
+.eyebrow { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 16px; }
+h1 { font-weight: 700; font-size: clamp(2.5rem, 7vw, 4.4rem); line-height: 1.02; }
+.hl { background: linear-gradient(transparent 60%, var(--hl) 60% 90%, transparent 90%); }
+.lede { margin-top: 20px; color: var(--muted); font-size: 1.08rem; max-width: 52ch; }
+
+.code { border-radius: 10px; overflow: hidden; background: var(--code-bg); color: var(--code-ink); min-width: 0; }
+.code-head {
+  display: flex; justify-content: space-between; gap: 12px;
+  padding: 8px 14px; border-bottom: 1px solid var(--code-line);
+  font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--code-muted);
+}
+.code pre { margin: 0; padding: 14px 16px; overflow-x: auto; font: 400 13.5px/1.7 var(--mono); tab-size: 4; }
+.k { color: var(--tok-k); } .s { color: var(--tok-s); } .f { color: var(--tok-f); } .c { color: var(--tok-c); } .p { color: var(--code-muted); }
+
+/* Week strip and progress */
+.tracker { margin-top: 48px; }
+.strip { display: flex; gap: 4px; }
+.seg {
+  --p: 0%;
+  position: relative; overflow: hidden; isolation: isolate;
+  flex: var(--w) 1 0; min-width: 0; height: 58px;
+  display: flex; flex-direction: column; justify-content: center; gap: 2px; padding: 0 10px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+  text-decoration: none; transition: border-color 0.15s;
+}
+.seg::before { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--p); background: var(--accent-soft); z-index: -1; transition: width 0.3s; }
+.seg:hover { border-color: var(--accent); }
+.seg b { font: 600 13px var(--mono); }
+.seg span { font: 400 11px var(--mono); color: var(--muted); white-space: nowrap; }
+.progress { margin-top: 20px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 8px 16px; align-items: center; }
+.progress .lbl { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.bar { height: 10px; border-radius: 99px; background: var(--surface-2); overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 99px; transition: width 0.3s; }
+.progress .num { font: 500 13px var(--mono); font-variant-numeric: tabular-nums; }
+.progress .hint { grid-column: 1 / -1; color: var(--muted); font-size: 0.88rem; }
+
+/* Stages */
+.stage { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 0 48px; padding-block: 48px; border-top: 1px solid var(--line); scroll-margin-top: 8px; }
+.stage:first-of-type { margin-top: 56px; }
+.meta { position: sticky; top: calc(16px + env(safe-area-inset-top, 0px)); align-self: start; display: flex; flex-direction: column; gap: 10px; }
+.badge { align-self: flex-start; background: var(--sun); color: var(--sun-ink); font: 600 12px var(--mono); text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 9px; border-radius: 4px; }
+.wk { font: 700 1.7rem/1.1 var(--display); letter-spacing: -0.02em; }
+.cnt { font: 400 12px var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.body { min-width: 0; }
+.body h2 { font-size: clamp(1.7rem, 4vw, 2.3rem); font-weight: 700; line-height: 1.1; }
+.goal { margin-top: 12px; color: var(--muted); max-width: 60ch; }
+.cols { margin-top: 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); gap: 28px; }
+.col { min-width: 0; }
+.col h3 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); padding-bottom: 8px; border-bottom: 1px solid var(--ink); }
+.col ul { list-style: none; margin: 0; padding: 0; }
+.col li { border-bottom: 1px dashed var(--line); }
+.col label { display: flex; gap: 12px; padding: 10px 0; cursor: pointer; align-items: flex-start; }
+.col label span { min-width: 0; }
+input[type="checkbox"] {
+  appearance: none; -webkit-appearance: none; flex: none;
+  width: 20px; height: 20px; margin: 2px 0 0;
+  border: 1.5px solid var(--muted); border-radius: 5px; background: var(--surface);
+  display: grid; place-content: center; cursor: pointer;
+}
+input[type="checkbox"]:checked { background: var(--accent); border-color: var(--accent); }
+input[type="checkbox"]:checked::after { content: ""; width: 10px; height: 5px; border: solid var(--accent-ink); border-width: 0 0 2px 2px; transform: rotate(-45deg) translate(1px, -1px); }
+label:has(input:checked) span { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--line); }
+.body .code { margin-top: 28px; }
+.done { margin-top: 20px; background: var(--accent-soft); border-radius: 8px; padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+.done b { font: 600 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
+.done span { min-width: 0; }
+
+.tabs { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px; }
+.tab { font: 500 14px var(--body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; cursor: pointer; }
+.tab:hover { border-color: var(--accent); }
+.tab[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.panel .cols { margin-top: 20px; }
+
+/* Tips and resources */
+.section { padding-block: 48px; border-top: 1px solid var(--line); }
+.section > h2 { font-size: clamp(1.7rem, 4vw, 2.3rem); font-weight: 700; line-height: 1.1; max-width: 22ch; }
+.tips { margin-top: 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 24px 32px; }
+.tip { min-width: 0; }
+.tip h3 { font: 600 1.05rem var(--display); letter-spacing: -0.01em; }
+.tip p { margin-top: 6px; color: var(--muted); font-size: 0.95rem; }
+.split { margin-top: 28px; display: flex; height: 40px; border-radius: 8px; overflow: hidden; font: 500 12px var(--mono); }
+.split div { display: flex; align-items: center; padding: 0 12px; white-space: nowrap; min-width: 0; overflow: hidden; }
+.split .a { flex: 70; background: var(--accent); color: var(--accent-ink); }
+.split .b { flex: 30; background: var(--surface-2); color: var(--ink); }
+.res { margin-top: 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 16px; }
+.res a { display: flex; flex-direction: column; gap: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; text-decoration: none; min-width: 0; transition: border-color 0.15s; }
+.res a:hover { border-color: var(--accent); }
+.res strong { font: 600 1.02rem var(--display); }
+.res span { color: var(--muted); font-size: 0.92rem; }
+.res em { font: 400 12px var(--mono); font-style: normal; color: var(--accent); margin-top: auto; padding-top: 8px; overflow-wrap: anywhere; }
+.note { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); max-width: 64ch; font-size: 0.95rem; }
+
+@media (max-width: 760px) {
+  body { padding-block: 24px 56px; }
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .stage { grid-template-columns: minmax(0, 1fr); padding-block: 36px; }
+  .meta { position: static; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: 16px; }
+  .wk { font-size: 1.25rem; }
+  .progress { grid-template-columns: minmax(0, 1fr) auto; }
+  .progress .bar { grid-column: 1 / -1; order: 3; }
+  .seg { padding: 0 7px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <p class="eyebrow">From zero to portfolio &middot; 26 weeks</p>
+      <h1><span class="hl">Python</span> Learning Roadmap</h1>
+      <p class="lede">A six-month plan for learning Python from scratch at about an hour a day. Three stages of fundamentals, one stage to pick a direction, and one to build work you can show. If you have more time, compress it.</p>
+    </div>
+    <div class="code" aria-label="Python REPL calculating total study hours">
+      <div class="code-head"><span>python 3 repl</span><span>study time</span></div>
+<pre><span class="p">&gt;&gt;&gt;</span> weeks = <span class="f">26</span>
+<span class="p">&gt;&gt;&gt;</span> hours_per_day = <span class="f">1</span>
+<span class="p">&gt;&gt;&gt;</span> weeks * <span class="f">7</span> * hours_per_day
+182
+<span class="c"># about 180 hours of practice</span></pre>
+    </div>
+  </header>
+
+  <section class="tracker" aria-label="Roadmap overview">
+    <nav class="strip" id="strip" aria-label="Jump to a stage"></nav>
+    <div class="progress">
+      <span class="lbl">Your progress</span>
+      <span class="num" id="overall-num">0 of 0</span>
+      <div class="bar" role="progressbar" aria-label="Overall progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="overall-bar"><i id="overall-fill"></i></div>
+      <p class="hint">Tick items as you finish them. Progress is saved in this browser only. Stage 4 counts the path you pick.</p>
+    </div>
+  </section>
+
+  <main id="stages"></main>
+
+  <section class="section" id="tips">
+    <h2>Tips that matter more than any resource</h2>
+    <div class="split" role="img" aria-label="Spend 70 percent of your time coding and 30 percent reading or watching">
+      <div class="a">Code 70%</div><div class="b">Read or watch 30%</div>
+    </div>
+    <div class="tips">
+      <div class="tip"><h3>Build as you learn</h3><p>Spend about 70% of your time coding and 30% reading or watching.</p></div>
+      <div class="tip"><h3>Type the code yourself</h3><p>Don't copy and paste tutorial code. Typing it is where the syntax sticks.</p></div>
+      <div class="tip"><h3>Get stuck on purpose</h3><p>Struggle for 15 to 20 minutes before you search. That is where real skill builds.</p></div>
+      <div class="tip"><h3>Finish small projects</h3><p>A finished small project teaches more than a big one you abandon.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="resources">
+    <h2>Good free resources</h2>
+    <div class="res">
+      <a href="https://automatetheboringstuff.com/" target="_blank" rel="noopener"><strong>Automate the Boring Stuff with Python</strong><span>Free online book. The best starting point for beginners.</span><em>automatetheboringstuff.com</em></a>
+      <a href="https://docs.python.org/3/tutorial/" target="_blank" rel="noopener"><strong>Official Python tutorial</strong><span>The language's own walkthrough, accurate and always current.</span><em>docs.python.org</em></a>
+      <a href="https://cs50.harvard.edu/python/" target="_blank" rel="noopener"><strong>CS50P</strong><span>Harvard's free Python course, with problem sets.</span><em>cs50.harvard.edu/python</em></a>
+      <a href="https://realpython.com/" target="_blank" rel="noopener"><strong>Real Python</strong><span>Tutorials on specific topics when you need to go deeper.</span><em>realpython.com</em></a>
+    </div>
+  </section>
+
+  <p class="note">Stages 1 to 3 are the same for everyone. Stage 4 is where plans diverge, so adjust its length and path to your goal: a job, data science, automation or a hobby.</p>
+</div>
+
+<script>
+(function () {
+  var KEY = "python-roadmap-progress";
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  var PROMPT = '<span class="p">&gt;&gt;&gt;</span>';
+
+  var STAGES = [
+    {
+      n: 1, weeks: "1–4", w: 4, name: "Fundamentals",
+      goal: "Get Python running and learn to think in small steps: store values, make decisions, repeat work, and package logic into functions.",
+      learnLabel: "Learn", practiceLabel: "Practice",
+      learn: [
+        "Install Python and set up VS Code (or PyCharm)",
+        "Variables, data types, operators, input and output",
+        "Conditionals (`if`/`elif`/`else`) and loops (`for`, `while`)",
+        "Functions, arguments, return values, scope"
+      ],
+      practice: ["Number guessing game", "Simple calculator", "To-do list in the terminal"],
+      codeLabel: "repl",
+      code: PROMPT + ' name = <span class="f">input</span>(<span class="s">"Your name? "</span>)\n' +
+            PROMPT + ' <span class="k">for</span> i <span class="k">in</span> <span class="f">range</span>(3):\n' +
+            '...     <span class="f">print</span>(<span class="s">f"Hello, {name}!"</span>)',
+      done: "You can write a 50 to 100 line program from a blank file without copying one."
+    },
+    {
+      n: 2, weeks: "5–8", w: 4, name: "Core data structures and idioms",
+      goal: "Learn the containers and habits that make Python code short and readable, and start working with real files.",
+      learnLabel: "Learn", practiceLabel: "Practice",
+      learn: [
+        "Lists, tuples, dictionaries, sets",
+        "List and dict comprehensions, slicing, sorting",
+        "Strings and string formatting (f-strings)",
+        "File I/O and `try`/`except` error handling",
+        "Modules, imports and the standard library: `os`, `pathlib`, `datetime`, `json`, `csv`, `random`"
+      ],
+      practice: ["CSV file cleaner", "Expense tracker", "Text-based quiz app"],
+      codeLabel: "scores.py",
+      code: 'scores = {<span class="s">"ana"</span>: 91, <span class="s">"bo"</span>: 78, <span class="s">"cy"</span>: 85}\n' +
+            'top = [n <span class="k">for</span> n, s <span class="k">in</span> scores.items() <span class="k">if</span> s &gt; 80]\n' +
+            '<span class="f">print</span>(top)  <span class="c"># [\'ana\', \'cy\']</span>',
+      done: "You can read a file, clean its data, and save the result without crashing on bad input."
+    },
+    {
+      n: 3, weeks: "9–12", w: 4, name: "Intermediate Python",
+      goal: "Structure code the way working developers do: classes, isolated environments, tests, and version control.",
+      learnLabel: "Learn", practiceLabel: "Practice",
+      learn: [
+        "Object-oriented programming: classes, inheritance, dunder methods",
+        "Virtual environments (`venv`) and `pip`",
+        "Decorators, generators, `*args` and `**kwargs`",
+        "Writing tests with `pytest`",
+        "Git and GitHub basics"
+      ],
+      practice: ["Inventory system with classes", "Command-line tool using `argparse`"],
+      codeLabel: "item.py",
+      code: '<span class="k">class</span> <span class="f">Item</span>:\n' +
+            '    <span class="k">def</span> <span class="f">__init__</span>(self, name, qty):\n' +
+            '        self.name = name\n' +
+            '        self.qty = qty\n\n' +
+            '    <span class="k">def</span> <span class="f">__repr__</span>(self):\n' +
+            '        <span class="k">return</span> <span class="s">f"Item({self.name!r}, {self.qty})"</span>',
+      done: "A small project lives on GitHub, split across several files, with passing tests."
+    },
+    {
+      n: 4, weeks: "13–20", w: 8, name: "Pick a specialization",
+      goal: "Choose one path and go deep. Doing all four at once is the fastest way to learn none of them.",
+      paths: [
+        {
+          id: "web", label: "Web development",
+          learnLabel: "Learn", practiceLabel: "Project ideas",
+          learn: ["Flask, then Django", "HTTP basics", "SQL", "REST APIs"],
+          practice: ["Blog", "URL shortener", "API with authentication"],
+          codeLabel: "app.py",
+          code: '<span class="f">@app</span>.get(<span class="s">"/links/&lt;code&gt;"</span>)\n' +
+                '<span class="k">def</span> <span class="f">follow</span>(code):\n' +
+                '    <span class="k">return</span> redirect(lookup(code))'
+        },
+        {
+          id: "data", label: "Data analysis",
+          learnLabel: "Learn", practiceLabel: "Project ideas",
+          learn: ["NumPy", "pandas", "Matplotlib and Seaborn", "SQL"],
+          practice: ["Analyze a public dataset and present your findings"],
+          codeLabel: "analysis.py",
+          code: 'df.groupby(<span class="s">"city"</span>)[<span class="s">"price"</span>].mean().sort_values()'
+        },
+        {
+          id: "ml", label: "Machine learning / AI",
+          learnLabel: "Learn", practiceLabel: "Project ideas",
+          learn: ["scikit-learn, then PyTorch", "Statistics basics"],
+          practice: ["Predict house prices", "Image classifier"],
+          codeLabel: "train.py",
+          code: 'model = <span class="f">RandomForestRegressor</span>()\n' +
+                'model.fit(X_train, y_train)\n' +
+                'model.score(X_test, y_test)'
+        },
+        {
+          id: "auto", label: "Automation / scripting",
+          learnLabel: "Learn", practiceLabel: "Project ideas",
+          learn: ["`requests`", "BeautifulSoup", "Selenium", "`schedule`"],
+          practice: ["Web scraper", "File organizer", "Email bot"],
+          codeLabel: "scrape.py",
+          code: 'page = requests.get(url, timeout=10)\n' +
+                'soup = <span class="f">BeautifulSoup</span>(page.text, <span class="s">"html.parser"</span>)\n' +
+                'titles = [h.text <span class="k">for</span> h <span class="k">in</span> soup.select(<span class="s">"h2"</span>)]'
+        }
+      ],
+      done: "One working project in your chosen path runs end to end and is something you'd show someone."
+    },
+    {
+      n: 5, weeks: "21–26", w: 6, name: "Real-world skills",
+      goal: "Turn practice into proof. Build a portfolio, read other people's code, and tighten your habits.",
+      learnLabel: "Build", practiceLabel: "Sharpen",
+      learn: [
+        "Build 2 to 3 portfolio projects in your chosen path and put them on GitHub",
+        "Write a good README for each project",
+        "Read other people's code and contribute small fixes to open source"
+      ],
+      practice: [
+        "Type hints, linting with `ruff`, and basic debugging",
+        "Problem-solving on LeetCode or Codewars (the easy tier is enough)"
+      ],
+      codeLabel: "terminal",
+      code: '<span class="k">def</span> <span class="f">average</span>(prices: <span class="f">list</span>[<span class="f">float</span>]) -&gt; <span class="f">float</span>:\n' +
+            '    <span class="k">return</span> <span class="f">sum</span>(prices) / <span class="f">len</span>(prices)\n\n' +
+            '<span class="p">$</span> ruff check .',
+      done: "Two or three projects sit on GitHub with READMEs, and you have made at least one open-source fix."
+    }
+  ];
+
+  function fmt(t) { return t.replace(/`([^`]+)`/g, "<code>$1</code>"); }
+  function item(key, text) {
+    return '<li><label><input type="checkbox" data-k="' + key + '"' + (state[key] ? " checked" : "") + '><span>' + fmt(text) + '</span></label></li>';
+  }
+  function list(prefix, label, arr, ltr) {
+    return '<div class="col"><h3>' + label + '</h3><ul>' +
+      arr.map(function (t, i) { return item(prefix + "-" + ltr + i, t); }).join("") + '</ul></div>';
+  }
+  function codeBlock(label, code) {
+    return '<div class="code"><div class="code-head"><span>' + label + '</span><span>python</span></div><pre>' + code + '</pre></div>';
+  }
+
+  function stageHTML(s) {
+    var inner = "";
+    if (s.paths) {
+      var cur = state._path || "web";
+      inner += '<div class="tabs" role="tablist" aria-label="Specialization paths">' +
+        s.paths.map(function (p) {
+          return '<button class="tab" role="tab" id="tab-' + p.id + '" data-path="' + p.id + '" aria-controls="panel-' + p.id + '" aria-selected="' + (p.id === cur) + '" tabindex="' + (p.id === cur ? 0 : -1) + '">' + p.label + '</button>';
+        }).join("") + '</div>';
+      inner += s.paths.map(function (p) {
+        return '<div class="panel" role="tabpanel" id="panel-' + p.id + '" aria-labelledby="tab-' + p.id + '"' + (p.id === cur ? "" : " hidden") + '>' +
+          '<div class="cols">' + list("s4-" + p.id, p.learnLabel, p.learn, "l") + list("s4-" + p.id, p.practiceLabel, p.practice, "p") + '</div>' +
+          codeBlock(p.codeLabel, p.code) + '</div>';
+      }).join("");
+    } else {
+      inner += '<div class="cols">' + list("s" + s.n, s.learnLabel, s.learn, "l") + list("s" + s.n, s.practiceLabel, s.practice, "p") + '</div>';
+      inner += codeBlock(s.codeLabel, s.code);
+    }
+    return '<section class="stage" id="stage-' + s.n + '" aria-labelledby="h-' + s.n + '">' +
+      '<div class="meta"><span class="badge">Stage ' + s.n + '</span><span class="wk">Weeks ' + s.weeks + '</span><span class="cnt" id="cnt-' + s.n + '"></span></div>' +
+      '<div class="body"><h2 id="h-' + s.n + '">' + s.name + '</h2><p class="goal">' + s.goal + '</p>' + inner +
+      '<div class="done"><b>Done when</b><span>' + s.done + '</span></div></div></section>';
+  }
+
+  document.getElementById("stages").innerHTML = STAGES.map(stageHTML).join("");
+  document.getElementById("strip").innerHTML = STAGES.map(function (s) {
+    return '<a class="seg" id="seg-' + s.n + '" href="#stage-' + s.n + '" style="--w:' + s.w + '" aria-label="Stage ' + s.n + ', weeks ' + s.weeks + '"><b>S' + s.n + '</b><span>wk ' + s.weeks + '</span></a>';
+  }).join("");
+
+  function update() {
+    var allDone = 0, allTotal = 0;
+    STAGES.forEach(function (s) {
+      var sec = document.getElementById("stage-" + s.n);
+      var boxes = Array.prototype.filter.call(sec.querySelectorAll('input[type="checkbox"]'), function (b) { return !b.closest("[hidden]"); });
+      var done = boxes.filter(function (b) { return b.checked; }).length;
+      var total = boxes.length;
+      allDone += done; allTotal += total;
+      document.getElementById("cnt-" + s.n).textContent = done + " of " + total + " done";
+      document.getElementById("seg-" + s.n).style.setProperty("--p", (total ? Math.round(done / total * 100) : 0) + "%");
+    });
+    var pct = allTotal ? Math.round(allDone / allTotal * 100) : 0;
+    document.getElementById("overall-num").textContent = allDone + " of " + allTotal + " (" + pct + "%)";
+    document.getElementById("overall-fill").style.width = pct + "%";
+    document.getElementById("overall-bar").setAttribute("aria-valuenow", pct);
+  }
+
+  document.addEventListener("change", function (e) {
+    var t = e.target;
+    if (t && t.matches && t.matches('input[type="checkbox"][data-k]')) {
+      if (t.checked) state[t.getAttribute("data-k")] = 1; else delete state[t.getAttribute("data-k")];
+      save(); update();
+    }
+  });
+
+  function selectPath(id, focus) {
+    var tabs = document.querySelectorAll(".tab");
+    Array.prototype.forEach.call(tabs, function (b) {
+      var on = b.getAttribute("data-path") === id;
+      b.setAttribute("aria-selected", on);
+      b.tabIndex = on ? 0 : -1;
+      if (on && focus) b.focus();
+    });
+    Array.prototype.forEach.call(document.querySelectorAll(".panel"), function (p) {
+      p.hidden = p.id !== "panel-" + id;
+    });
+    state._path = id; save(); update();
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest(".tab");
+    if (b) selectPath(b.getAttribute("data-path"), false);
+  });
+  document.addEventListener("keydown", function (e) {
+    var b = e.target.closest && e.target.closest(".tab");
+    if (!b || (e.key !== "ArrowRight" && e.key !== "ArrowLeft")) return;
+    var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+    var i = tabs.indexOf(b) + (e.key === "ArrowRight" ? 1 : -1);
+    i = (i + tabs.length) % tabs.length;
+    selectPath(tabs[i].getAttribute("data-path"), true);
+    e.preventDefault();
+  });
+
+  update();
+})();
+</script>
+
+</body></html>

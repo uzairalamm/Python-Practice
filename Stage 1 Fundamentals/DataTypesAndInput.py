@@ -33,3 +33,16 @@ print(num1 + num2) #guess the input? you think it should be 6 right, but no, its
 num1 = int(input("Enter Num1: "))
 num2 = int(input("Enter Num2: "))
 print(num1 + num2)
+
+
+#Practice Exercise
+# Write one program that does this:
+# Asks the user for their name.
+# Asks the user for their birth year (as a number).
+# Calculates their age using the current year, 2026.
+# Prints a message like: Hello Ali, you are 20 years old.
+
+name = input("Enter Your Name: ")
+birthYear = int(input("Enter Your BirthYear: "))
+age = 2026 - birthYear
+print(f"Hello {name}, you are {age} years old.")

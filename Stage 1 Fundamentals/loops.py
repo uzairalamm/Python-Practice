@@ -1,9 +1,81 @@
 #loops
+count = 1
+while count <= 5:
+    print(count, end=' ')
+    count+=1
+print()
 
-# count = 1
-# while count <= 5:
-#     print(count, end=' ')
-#     count+=1
+# Print numbers from 1 to 5 using for loop
+for i in range(1,6):
+    print(i)
+
+
+# Print each letter of a word on its own line
+word = "Hello"
+for char in word:
+    print(char)
+
+
+# Add all numbers from 1 to 10
+sum = 0
+for num in range(2,11):
+    sum +=num
+print(sum)
+
+
+
+# Practice 1: Print 1 to 10 with a for loop
+for number in range(1, 11):
+    print(number, end=" ")
+print()
+
+# Print 10 down to 1 with a while loop
+count = 10
+while count > 0:
+    print(count, end=" ")
+    count -= 1
+print()
+
+
+# Practice 2: Multiplication table of a number
+tableNumber = int(input("Enter a number: "))
+
+print(f"Table of {tableNumber}")
+for multiplier in range(1, 11):
+    print(f"{tableNumber} x {multiplier} = {tableNumber * multiplier}")
+
+
+# Practice 3: Sum of all even numbers from 1 to 100
+total = 0
+
+for number in range(1, 101):
+    if number % 2 == 0:
+        total += number
+
+print(f"Sum of even numbers from 1 to 100: {total}")
+
+
+# Practice 4: Number guessing game
+secretNumber = 7
+attempts = 0
+isGuessed = False
+
+while not isGuessed:
+    guess = int(input("Guess the number (1-10): "))
+
+    # Count every guess, including the correct one
+    attempts += 1
+
+    if guess > secretNumber:
+        print("Too high")
+    elif guess < secretNumber:
+        print("Too low")
+    else:
+        print("Correct")
+        isGuessed = True
+
+print(f"You guessed it in {attempts} tries.")
+
 
 # Keep asking until the user enters the correct password
 correctPassword = "123456"
@@ -22,6 +94,6 @@ while True:
         break
 
     
-   
 if count < 3:
     print("Access granted.")
+

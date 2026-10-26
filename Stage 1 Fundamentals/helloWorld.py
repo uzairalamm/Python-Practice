@@ -1,5 +1,5 @@
-def hello_function():
+def printHelloWorld():
     print ("Hello World")
 
 
-hello_function()
+printHelloWorld()

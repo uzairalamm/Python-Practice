@@ -120,3 +120,45 @@ print(charCount)
 # 3. Show all contacts, 
 # 4. Exit. For search, 
 # print Contact not found if the name does not exist. Use functions where it makes sense.
+
+
+
+
+def addContact(phoneBook, name, number):
+    phoneBook[name] = number
+
+def searchContact(phoneBook, name):
+    if name in phoneBook:
+        return True
+    return False
+
+phoneBook = {}
+while True:
+    print("-------------------- Phone Book -------------------------")
+    print("1. Add contact")
+    print("2. Search contact")
+    print("3. Show all contacts")
+    print("4. exit")
+    choice = input("Enter Your Choice: ")
+
+    if choice == '1':
+        name = input("Enter the Name: ")
+        number = input("Enter the Number: ")
+        addContact(phoneBook, name, number)
+        print("Contact Added to the PhoneBook")
+
+    elif choice == '2':
+        name = input("Enter the Name: ")
+        if(searchContact(phoneBook, name)):
+            print("Found")
+        else:
+            print("Not Found")
+
+    elif choice == '3':
+        print(phoneBook)
+
+    elif choice == '4':
+        print("exiting..........")
+        break
+    else:
+        print("Invalid Choice")
